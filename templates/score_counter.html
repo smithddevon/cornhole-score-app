@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Score Counter
+{% endblock %}
+
+{% block main %}
+    <h2>Score Counter</h2>
+
+    <div>
+        <p>{{ team1_name }}: <span id="team1-score">{{ team1_score }}</span></p>
+        <button id="team1-button" onclick="updateScore('team1', 1)">+1</button>
+        <button onclick="updateScore('team1', -1)">-1</button>
+    </div>
+
+    <div>
+        <p>{{ team2_name }}: <span id="team2-score">{{ team2_score }}</span></p>
+        <button id="team2-button" onclick="updateScore('team2', 1)">+1</button>
+        <button onclick="updateScore('team2', -1)">-1</button>
+    </div>
+
+    <h1 id="winner" style="display: none;"></h1>
+
+    <div id="winner-dialog" style="display: none;">
+        <p id="winner-message"></p>
+        <button id="close-button">Close</button>
+    </div>
+
+    <script>
+        function updateScore(team, increment) {
+            const scoreElement = document.getElementById(`${team}-score`);
+            const currentScore = parseInt(scoreElement.innerHTML) || 0;
+            const newScore = Math.min(21, Math.max(0, currentScore + increment));
+
+            scoreElement.innerHTML = newScore;
+
+            fetch('/update_score', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ team, score: newScore })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.winner) {
+                    document.getElementById("winner-message").innerHTML = `${data.winner}`;
+                    document.getElementById("winner-dialog").style.display = "block";
+
+                    // Disable the buttons to prevent further updates
+                    document.getElementById('team1-button').disabled = true;
+                    document.getElementById('team2-button').disabled = true;
+
+                    document.getElementById("close-button").addEventListener("click", function() {
+                        document.getElementById("winner-dialog").style.display = "none";
+                        window.location.href = "/";
+                    })
+                }
+            })
+            .catch(err => console.error('Error updating score:', err));
+        }
+    </script>
+{% endblock %}
+

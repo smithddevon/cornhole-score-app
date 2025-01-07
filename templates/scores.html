@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Score History
+{% endblock %}
+
+{% block main %}
+    <h2>Score History</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Team 1</th>
+                <th>Team 1 Score</th>
+                <th>Team 2</th>
+                <th>Team 2 Score</th>
+                <th>Winner</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for game in game_data %}
+                <tr>
+                    <td>{{ game.team1_name }}</td>
+                    <td>{{ game.team1_score }}</td>
+                    <td>{{ game.team2_name }}</td>
+                    <td>{{ game.team2_score }}</td>
+                    <td>{{ game.winner }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
+{% endblock %}
