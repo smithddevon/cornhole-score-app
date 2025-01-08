@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Score Keeper
+{% endblock %}
+
+{% block main %}
+<main class="container mt-4">
+    <h2>Score Keeper</h2>
+
+    <!-- Flash Message -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="flash-message">
+        <p>{{ messages[0] }}</p>
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <script>
+        // JavaScript function to increment a value
+        function incrementValue(id) {
+            var element = document.getElementById(id);
+            element.innerHTML = parseInt(element.innerHTML) + 1;
+
+            // JavaScript function to decrement a value
+        function decrementValue(id) {
+            var element = document.getElementById(id);
+            var currentValue = parseInt(element.innerHTML);
+            if (currentValue > 0) {
+                element.innerHTML = currentValue - 1;
+            }
+        }
+    </script>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Team</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Team 1</td>
+                <td id="score1">0</td>
+                <td><button onclick="incrementValue('score1')">+1</button></td>
+                <td><button onclick="decrementValue('score1')">-1</button></td>
+            </tr>
+            <tr>
+                <td>Team 2</td>
+                <td id="score2">0</td>
+                <td><button onclick="incrementValue('score2')">+1</button></td>
+                <td><button onclick="decrementValue('score2')">-1</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Scores:</h2>
+    <p>{{ team1 }}: <span id="score1">0</span></p>
+    <p>{{ team2 }}: <span id="score2">0</span></p>
+</main>
+{% endblock %}
