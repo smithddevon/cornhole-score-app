@@ -4,7 +4,7 @@ stages:
     - apply
     - deploy
 
-before-script: 
+before_script: 
     # Ensure the script is executable and run it to exchange the token for GCP credentials
     - chmod +x nfra/exchange_token.sh
     - ./infra/exchange_token.sh
@@ -21,7 +21,7 @@ terraform_apply:
         - main
 
 terraform_deploy:
-    stage: terraform_deploy
+    stage: deploy
     image: google/cloud-sdk:latest
     script: 
         - gcloud app deploy
