@@ -6,7 +6,7 @@ stages:
 
 before_script: 
     # Ensure the script is executable and run it to exchange the token for GCP credentials
-    - chmod +x nfra/exchange_token.sh
+    - chmod +x infra/exchange_token.sh
     - ./infra/exchange_token.sh
 
 
