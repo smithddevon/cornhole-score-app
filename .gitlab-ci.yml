@@ -18,7 +18,7 @@ terraform_apply:
         - terraform plan -out=tfplan
         - terraform apply -auto-approve tfplan
     only:
-        - main
+        - master
 
 terraform_deploy:
     stage: deploy
@@ -26,4 +26,4 @@ terraform_deploy:
     script: 
         - gcloud app deploy
     only:
-        - main
+        - master
