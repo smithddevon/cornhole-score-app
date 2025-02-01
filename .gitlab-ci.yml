@@ -6,8 +6,9 @@ stages:
 
 before_script: 
     # Ensure the script is executable and run it to exchange the token for GCP credentials
-    - chmod +x infra/exchange_token.sh
-    - ./infra/exchange_token.sh
+    script:
+        - chmod +x infra/exchange_token.sh
+        - ./infra/exchange_token.sh
 
 
 terraform_apply:
