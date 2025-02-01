@@ -1,5 +1,3 @@
-image: hashicorp/terraform:latest
-
 before_script:
   # Ensure the script is executable and run it to exchange the token for GCP credentials
   - echo "Starting before_script"
