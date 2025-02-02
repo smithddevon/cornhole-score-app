@@ -1,3 +1,11 @@
+before_script:
+  # Ensure the script is executable and run it to exchange the token for GCP credentials
+  - echo "Starting before_script"
+  - set -x
+  - chmod +x infra/exchange_token.sh
+  - ./infra/exchange_token.sh
+  - echo "Completed before_script"
+
 stages:
   - apply
   - deploy
@@ -6,6 +14,7 @@ terraform_apply:
   stage: apply
   image: hashicorp/terraform:latest
   script:
+    - echo "running tf init"
     - init
     - plan -out=tfplan
     - apply -auto-approve tfplan
