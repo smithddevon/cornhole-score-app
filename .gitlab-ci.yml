@@ -6,16 +6,16 @@ terraform_apply:
   stage: apply
   image: hashicorp/terraform:latest
   script:
-    - terraform init
-    - terraform plan -out=tfplan
-    - terraform apply -auto-approve tfplan
+      - terraform init
+      - terraform plan -out=tfplan
+      - terraform apply -auto-approve tfplan
   only:
-    - master
+      - master
 
 terraform_deploy:
   stage: deploy
   image: google/cloud-sdk:latest
   script: 
-    - gcloud app deploy
+      - gcloud app deploy
   only:
-    - master
+      - master
