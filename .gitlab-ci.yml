@@ -1,11 +1,21 @@
 stages:
-  - test
+  - apply
+  - deploy
 
-test_before_script:
-  stage: test
-  before_script:
-    - echo "Starting before_script"
-    - set -x
-    - chmod +x infra/exchange_token.sh
-    - ./infra/exchange_token.sh
-    - echo "Completed before_script"
+terraform_apply:
+  stage: apply
+  image: hashicorp/terraform:latest
+  script:
+    - terraform init
+    - terraform plan -out=tfplan
+    - terraform apply -auto-approve tfplan
+  only:
+    - master
+
+terraform_deploy:
+  stage: deploy
+  image: google/cloud-sdk:latest
+  script: 
+    - gcloud app deploy
+  only:
+    - master
