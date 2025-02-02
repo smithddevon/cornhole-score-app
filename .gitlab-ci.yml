@@ -12,11 +12,11 @@ stages:
 
 terraform_apply:
   stage: apply
-  image: alpine/terraform:latest
+  image: hashicorp/terraform:latest
   script:
-    - terraform init
-    - terraform plan -out=tfplan
-    - terraform apply -auto-approve tfplan
+    - init
+    - plan -out=tfplan
+    - apply -auto-approve tfplan
   only:
     - master
 
