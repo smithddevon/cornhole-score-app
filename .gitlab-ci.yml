@@ -3,6 +3,5 @@ stages:
 
 terraform_apply:
   stage: apply
-  image: hashicorp/terraform:latest
   script:
     - terraform init
