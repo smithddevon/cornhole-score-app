@@ -4,7 +4,7 @@ stages:
 terraform_apply:
   stage: apply
   image: hashicorp/terraform
-
+  entrypoint: [""]
   script:
     - echo "Installing dependencies"
     - apk update && apk add --no-cache curl jq
