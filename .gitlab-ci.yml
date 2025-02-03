@@ -16,7 +16,7 @@ terraform_apply:
   script:
     - echo "Installing dependencies"
     - apk update && apk add --no-cache curl jq
-    = echo "dependencies installed"
+    - echo "dependencies installed" 
     - init
     - plan -out=tfplan
     - apply -auto-approve tfplan
