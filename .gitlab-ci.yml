@@ -1,14 +1,19 @@
 stages:
-  - test
+  - apply
 
-
-test_script:
-  stage: test
-  # Ensure the script is executable and run it to exchange the token for GCP credentials
+terraform_apply:
+  stage: apply
+  image: hashicorp/terraform
   script:
-    - echo "Starting before_script"
-    - set -x
-    - chmod +x infra/exchange_token.sh
-    - ./infra/exchange_token.sh
-    - echo "Completed before_script"
+    - echo "Installing dependencies"
+    - apk update && apk add --no-cache curl jq
+    - echo "dependencies installed" 
+    - init
+    - plan -out=tfplan
+    - apply -auto-approve tfplan
+  only:
+    - master
+
+
+
 
