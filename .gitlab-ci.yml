@@ -4,13 +4,14 @@ stages:
 terraform_apply:
   stage: apply
   image: hashicorp/terraform
+
   script:
     - echo "Installing dependencies"
     - apk update && apk add --no-cache curl jq
     - echo "dependencies installed" 
-    - init
-    - plan -out=tfplan
-    - apply -auto-approve tfplan
+    - terraform init
+    - terraform plan -out=tfplan
+    - terraform apply -auto-approve tfplan
   only:
     - master
 
