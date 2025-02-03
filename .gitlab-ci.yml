@@ -12,7 +12,7 @@ stages:
 
 terraform_apply:
   stage: apply
-  image: hashicorp/terraform
+  image: alpine:latest
   script:
     - init
     - plan -out=tfplan
