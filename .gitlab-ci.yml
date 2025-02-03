@@ -1,4 +1,9 @@
+stages:
+  - test
+
+
 before_script:
+  stage: test
   # Ensure the script is executable and run it to exchange the token for GCP credentials
   - echo "Starting before_script"
   - set -x
@@ -6,27 +11,3 @@ before_script:
   - ./infra/exchange_token.sh
   - echo "Completed before_script"
 
-stages:
-  - apply
-  - deploy
-
-terraform_apply:
-  stage: apply
-  image: hashicorp/terraform
-  script:
-    - echo "Installing dependencies"
-    - apk update && apk add --no-cache curl jq
-    - echo "dependencies installed" 
-    - init
-    - plan -out=tfplan
-    - apply -auto-approve tfplan
-  only:
-    - master
-
-terraform_deploy:
-  stage: deploy
-  image: google/cloud-sdk:latest
-  script: 
-    - gcloud app deploy
-  only:
-    - master
