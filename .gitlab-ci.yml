@@ -12,8 +12,11 @@ stages:
 
 terraform_apply:
   stage: apply
-  image: alpine:latest
+  image: hashicorp/terraform
   script:
+    - echo "Installing dependencies"
+    - apk update && apk add --no-cache curl jq
+    = echo "dependencies installed"
     - init
     - plan -out=tfplan
     - apply -auto-approve tfplan
