@@ -1,10 +1,14 @@
 stages:
   - apply
 
+image:
+  name: hashicorp/terraform:light
+  entrypoint:
+    - '/usr/bin/env'
+    - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+
 terraform_apply:
   stage: apply
-  image: hashicorp/terraform
-  entrypoint: [""]
   script:
     - echo "Installing dependencies"
     - apk update && apk add --no-cache curl jq
