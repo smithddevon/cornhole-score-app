@@ -19,6 +19,9 @@ terraform_apply:
     - '/usr/bin/env'
     - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
   script:
+    - echo "Installing dependencies"
+    - apk update && apk add --no-cache curl jq
+    - echo "dependencies installed"
     - cd infra
     - terraform init
     - terraform plan -out=tfplan
