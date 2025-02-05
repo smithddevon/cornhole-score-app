@@ -15,7 +15,7 @@ terraform_apply:
   stage: apply
   image:
   name: hashicorp/terraform:light
-  entrypoint:
+  entry_point:
     - '/usr/bin/env'
     - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
   script:
