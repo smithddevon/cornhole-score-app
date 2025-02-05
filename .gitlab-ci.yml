@@ -1,7 +1,6 @@
 before_script:
   # Ensure the script is executable and run it to exchange the token for GCP credentials
   - echo "Starting before_script"
-  - ls -l
   - set -x
   - chmod +x infra/exchange_token.sh
   - ./infra/exchange_token.sh
@@ -20,9 +19,7 @@ terraform_apply:
     - '/usr/bin/env'
     - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
   script:
-    - echo "Installing dependencies"
-    - apk update && apk add --no-cache curl jq
-    - echo "dependencies installed" 
+    - cd infra
     - terraform init
     - terraform plan -out=tfplan
     - terraform apply -auto-approve tfplan
