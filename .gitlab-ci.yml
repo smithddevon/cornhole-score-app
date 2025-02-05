@@ -1,6 +1,7 @@
 before_script:
   # Ensure the script is executable and run it to exchange the token for GCP credentials
   - echo "Starting before_script"
+  - ls -l
   - set -x
   - chmod +x infra/exchange_token.sh
   - ./infra/exchange_token.sh
