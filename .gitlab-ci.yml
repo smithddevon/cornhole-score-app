@@ -2,16 +2,19 @@ stages:
   - test
 
 
-test_script:
-  stage: test
-  # Ensure the script is executable and run it to exchange the token for GCP credentials
-  script:
-    - echo "Starting before_script"
+before_script:
+   - echo "Starting before_script"
     - set -x
     - apt-get update && apt-get install -y curl jq
     - curl https://sdk.cloud.google.com | bash  # Install gcloud CLI
     - source $HOME/google-cloud-sdk/path.bash.inc  # Initialize gcloud CLI
     - gcloud --version  # Verify gcloud installation
+
+
+test_script:
+  stage: test
+  # Ensure the script is executable and run it to exchange the token for GCP credentials
+  script:
     - echo "Authenticating with Workload Identity Federation..."
     - chmod +x infra/exchange_token.sh
     - ./infra/exchange_token.sh
