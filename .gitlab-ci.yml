@@ -17,6 +17,12 @@ test_script:
     - ./infra/exchange_token.sh
     - echo "Completed before_script"
     - gcloud auth list
+    - echo "PROJECT_NUMBER: ${PROJECT_NUMBER}"
+    - echo "POOL_ID: ${POOL_ID}"
+    - echo "PROVIDER_ID: ${PROVIDER_ID}"
+    - echo "SERVICE_ACCOUNT_EMAIL: ${SERVICE_ACCOUNT_EMAIL}"
+    - echo "GITLAB_OIDC_TOKEN: ${GITLAB_OIDC_TOKEN}"
+
 
 
 
