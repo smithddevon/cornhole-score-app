@@ -3,7 +3,7 @@ stages:
 
 
 before_script:
-   - echo "Starting before_script"
+    - echo "Starting before_script"
     - set -x
     - apt-get update && apt-get install -y curl jq
     - curl https://sdk.cloud.google.com | bash  # Install gcloud CLI
