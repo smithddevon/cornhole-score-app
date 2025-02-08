@@ -1,41 +1,22 @@
-before_script:
-  # Ensure the script is executable and run it to exchange the token for GCP credentials
-  - echo "Starting before_script"
-  - set -x
-  - apt-get update && apt-get install -y curl jq
-  - curl https://sdk.cloud.google.com | bash  # Install gcloud CLI
-  - source $HOME/google-cloud-sdk/path.bash.inc  # Initialize gcloud CLI
-  - gcloud --version  # Verify gcloud installation
-  - echo "Authenticating with Workload Identity Federation..."
-  - chmod +x infra/exchange_token.sh
-  - ./infra/exchange_token.sh
-  - echo "Completed before_script"
-  - echo "Checking current authentication..."
-  - gcloud auth list
-
-
 stages:
-  - apply
+  - test
 
 
-
-terraform_apply:
-  stage: apply
-  image:
-    name: hashicorp/terraform:light
-    entrypoint:
-    - '/usr/bin/env'
-    - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+test_script:
+  stage: test
+  # Ensure the script is executable and run it to exchange the token for GCP credentials
   script:
-    - echo "Installing dependencies"
-    - apk update && apk add --no-cache curl jq
-    - echo "dependencies installed"
-    - cd infra
-    - terraform init
-    - terraform plan -out=tfplan
-    - terraform apply -auto-approve tfplan
-  only:
-    - master
+    - echo "Starting before_script"
+    - set -x
+    - chmod +x infra/exchange_token.sh
+    - ./infra/exchange_token.sh
+    - echo "Completed before_script"
+    - gcloud auth list
+
+
+
+
+
 
 
 
