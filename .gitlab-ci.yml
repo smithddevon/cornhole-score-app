@@ -5,6 +5,9 @@ before_script:
   - chmod +x infra/exchange_token.sh
   - ./infra/exchange_token.sh
   - echo "Completed before_script"
+  - echo "Checking current authentication..."
+  - gcloud auth list
+
 
 stages:
   - apply
