@@ -15,7 +15,6 @@ test_script:
   stage: test
   # Ensure the script is executable and run it to exchange the token for GCP credentials
   script:
-    - echo "Authenticating with Workload Identity Federation..."
     - chmod +x infra/exchange_token.sh
     - ./infra/exchange_token.sh
     - echo "Completed before_script"
