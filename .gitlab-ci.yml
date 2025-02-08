@@ -21,7 +21,7 @@ test_script:
     - echo "POOL_ID: ${POOL_ID}"
     - echo "PROVIDER_ID: ${PROVIDER_ID}"
     - echo "SERVICE_ACCOUNT_EMAIL: ${SERVICE_ACCOUNT_EMAIL}"
-    - echo "GITLAB_OIDC_TOKEN: ${GITLAB_OIDC_TOKEN}"
+    - echo "GITLAB_OIDC_TOKEN: ${CI_JOB_JWT}"
 
 
 
