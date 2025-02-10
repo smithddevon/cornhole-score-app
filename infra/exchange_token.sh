@@ -1,3 +1,5 @@
+echo "GITLAB_OIDC_TOKEN: ${GITLAB_OIDC_TOKEN}"
+
 PAYLOAD="$(cat <<EOF
 {
   "audience": "//iam.googleapis.com/projects/${PROJECT_NUMBER}/locations/global/workloadIdentityPools/${POOL_ID}/providers/${PROVIDER_ID}",
