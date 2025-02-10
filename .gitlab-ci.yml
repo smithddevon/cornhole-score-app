@@ -1,29 +1,12 @@
 stages:
   - test
 
-
-before_script:
-    - echo "Starting before_script"
-    - set -x
-    - apt-get update && apt-get install -y curl jq
-    - curl https://sdk.cloud.google.com | bash  # Install gcloud CLI
-    - source $HOME/google-cloud-sdk/path.bash.inc  # Initialize gcloud CLI
-    - gcloud --version  # Verify gcloud installation
-
-
-test_script:
+get-crendentials:
   stage: test
-  # Ensure the script is executable and run it to exchange the token for GCP credentials
+  image: dwdraju/alpine-curl-jq
   script:
     - chmod +x infra/exchange_token.sh
     - ./infra/exchange_token.sh
-    - echo "Completed before_script"
-    - gcloud auth list
-    - echo "PROJECT_NUMBER: ${PROJECT_NUMBER}"
-    - echo "POOL_ID: ${POOL_ID}"
-    - echo "PROVIDER_ID: ${PROVIDER_ID}"
-    - echo "SERVICE_ACCOUNT_EMAIL: ${SERVICE_ACCOUNT_EMAIL}"
-    - echo "GITLAB_OIDC_TOKEN: ${CI_JOB_JWT}"
 
 
 
