@@ -5,7 +5,7 @@ get-crendentials:
   stage: test
   image: dwdraju/alpine-curl-jq
   script:
-    - echo "CI_JOB_JWT: ${CI_JOB_JWT}"
+    - printenv
     - chmod +x infra/exchange_token.sh
     - ./infra/exchange_token.sh
 
