@@ -1,19 +1,12 @@
 stages:
   - test
 
-# Job to check if the OIDC token is being created
-check_oidc_token:
-  stage: test
-  image: dwdraju/alpine-curl-jq  # Use an image with curl/jq for debugging
+get-crendentials:
+  stage: test 
+  image: dwdraju/alpine-curl-jq
   script:
-    - echo "Starting OIDC token test..."
-
-    # Debugging: Check if the CI_JOB_TOKEN exists
-    - echo "CI_JOB_TOKEN: $CI_JOB_TOKEN"
-    
-    # Check if the OIDC token is being generated and passed to the script
-    - echo "Checking if OIDC token is available..."
-    - if [ -z "$CI_JOB_TOKEN" ]; then echo "No CI_JOB_TOKEN found"; else echo "CI_JOB_TOKEN is available"; fi
+    - chmod +x infra/exchange_token.sh
+    - ./infra/exchange_token.sh
 
 
 
