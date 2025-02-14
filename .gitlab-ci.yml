@@ -1,14 +1,14 @@
 stages:
   - test
 
-id_token:
+.id_token:
   GITLAB_OIDC_TOKEN:
     aud: https://gitlab.com
 
 get-crendentials:
   stage: test
   image: dwdraju/alpine-curl-jq
-  extends: id_token
+  extends: .id_token
   script:
     - echo $GITLAB_OIDC_TOKEN
     - chmod +x infra/exchange_token.sh
