@@ -11,6 +11,10 @@ get-crendentials:
     - echo $GITLAB_OIDC_TOKEN
     - chmod +x infra/exchange_token.sh
     - ./infra/exchange_token.sh
+    - echo $PROJECT_NUMBER
+    - echo $PROVIDER_ID
+    - echo $POOL_ID
+    - echo $SERVICE_ACCOUNT_EMAIL
 
  
 
