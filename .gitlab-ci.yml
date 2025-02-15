@@ -1,13 +1,9 @@
-stages:
-  - test
-
-get-crendentials:
-  stage: test 
-  image: dwdraju/alpine-curl-jq
+job:
+  id_tokens:
+    GITLOAB_OIDC_TOKEN:
+      aud: https://googleapis.com
   script:
-    - chmod +x infra/exchange_token.sh
-    - ./infra/exchange_token.sh
-
+    - echo "OIDC token: $GITLAB_OIDC_TOKEN"
 
 
 
