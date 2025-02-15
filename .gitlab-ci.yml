@@ -2,8 +2,7 @@ job:
   id_tokens:
     GITLOAB_OIDC_TOKEN:
       aud: https://googleapis.com
-  script:
-    - echo "OIDC token: $GITLAB_OIDC_TOKEN"
+ 
 
 
 
