@@ -22,3 +22,10 @@ FEDERATED_TOKEN="$(curl -v -X POST "https://sts.googleapis.com/v1/token" \
 )"
 
 echo $FEDERATED_TOKEN
+
+response=$(curl -v -X POST "https://sts.googleapis.com/v1/token" \
+  --header "Accept: application/json" \
+  --header "Content-Type: application/json" \
+  --data "${PAYLOAD}")
+
+echo "Full Response: ${response}"
