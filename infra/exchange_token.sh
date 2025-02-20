@@ -14,7 +14,7 @@ EOF
 
 echo $PAYLOAD
 
-FEDERATED_TOKEN="$(curl -X POST "https://sts.googleapis.com/v1/token" \
+FEDERATED_TOKEN="$(curl -v -X POST "https://sts.googleapis.com/v1/token" \
   --header "Accept: application/json" \
   --header "Content-Type: application/json" \
   --data "${PAYLOAD}" \
