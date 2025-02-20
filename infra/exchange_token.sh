@@ -13,3 +13,12 @@ EOF
 )"
 
 echo $PAYLOAD
+
+FEDERATED_TOKEN="$(curl --fail "https://sts.googleapis.com/v1/token" \
+  --header "Accept: application/json" \
+  --header "Content-Type: application/json" \
+  --data "${PAYLOAD}" \
+  | jq -r '.access_token'
+)"
+
+echo $FEDERATED_TOKEN
