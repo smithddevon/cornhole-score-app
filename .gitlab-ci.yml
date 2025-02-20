@@ -8,14 +8,9 @@ get-crendentials:
     GITLAB_OIDC_TOKEN:
       aud: https://gitlab.com
   script:
-    - echo $GITLAB_OIDC_TOKEN
     - chmod +x infra/exchange_token.sh
     - ./infra/exchange_token.sh
-    - echo $FEDERATED_TOKEN
-    - echo $PROJECT_NUMBER
-    - echo $PROVIDER_ID
-    - echo $POOL_ID
-    - echo $SERVICE_ACCOUNT_EMAIL
+  
 
  
 
