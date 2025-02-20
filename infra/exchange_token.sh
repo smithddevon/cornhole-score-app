@@ -12,22 +12,4 @@ PAYLOAD="$(cat <<EOF
 EOF
 )"
 
-
-FEDERATED_TOKEN="$(curl -v -X POST "https://sts.googleapis.com/v1/token" \
-  --header "Accept: application/json" \
-  --header "Content-Type: application/json" \
-  --data "${PAYLOAD}" \
-  | jq -r '.access_token'
-)"
-
-echo $FEDERATED_TOKEN
-
-ACCESS_TOKEN="$(curl -v -X POST "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/${SERVICE_ACCOUNT_EMAIL}:generateAccessToken" \
-  --header "Accept: application/json" \
-  --header "Content-Type: application/json" \
-  --header "Authorization: Bearer ${FEDERATED_TOKEN}" \
-  --data '{"scope": ["https://www.googleapis.com/auth/cloud-platform"]}' \
-  | jq -r '.accessToken'
-)"
-
-echo $ACCESS_TOKEN
+echo $PAYLOAD
