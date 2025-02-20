@@ -1,4 +1,4 @@
-echo "GITLAB_OIDC_TOKEN: ${GITLAB_OIDC_TOKEN}"
+echo "GITLAB_OIDC_TOKEN: ${GITLAB_OIDC_TOKEN}" > token_value.txt
 
 PAYLOAD="$(cat <<EOF
 {
