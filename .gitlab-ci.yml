@@ -14,7 +14,6 @@ get-crendentials:
       --service-account="${GCP_SERVICE_ACCOUNT}"
       --output-file=.gcp_temp_cred.json
       --credential-source-file=.ci_job_jwt_file
-      --aud=https://accounts.google.com
     - gcloud auth login --cred-file=`pwd`/.gcp_temp_cred.json
     - gcloud auth list
 
