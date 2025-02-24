@@ -20,6 +20,10 @@ get-crendentials:
     - echo "Created credential configuration file"
     - cat .gcp_temp_cred.json
     - echo "Contents of credential configuration file"
+    - gcloud auth login --cred-file=`pwd`/.gcp_temp_cred.json
+    - echo "Logged into Google Cloud"
+    - gcloud auth list
+    - echo "Auth List:"
     
 get-sh:
   image: dwdraju/alpine-curl-jq
