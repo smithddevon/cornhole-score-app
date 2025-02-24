@@ -10,13 +10,10 @@ get-crendentials:
       aud: https://gitlab.com
   script:
     - echo ${GITLAB_OIDC_TOKEN} > .ci_job_jwt_file
-    - gcloud iam workload-identity-pools create-cred-config ${GCP_WORKLOAD_IDENTITY_PROVIDER}
-      --service-account="${GCP_SERVICE_ACCOUNT}"
-      --output-file=.gcp_temp_cred.json
-      --credential-source-file=.ci_job_jwt_file
-    - gcloud auth login --cred-file=`pwd`/.gcp_temp_cred.json --verbosity=debug
-    - gcloud auth list
-
+    - echo "Created .ci_job_jwt_file"
+    - cat .ci_job_jwt_file
+    - echo "Contents of .ci_job_jwt_file"
+    
 get-sh:
   image: dwdraju/alpine-curl-jq
   stage: test-sh
