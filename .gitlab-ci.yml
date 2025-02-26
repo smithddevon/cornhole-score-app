@@ -17,8 +17,7 @@ get-crendentials:
       --service-account="${GCP_SERVICE_ACCOUNT}"
       --output-file=.gcp_temp_cred.json
       --credential-source-file=.ci_job_jwt_file
-    - sudo chown gitlab-runner:gitlab-runner .gcp_temp_cred.json
-    - chmod 644 .gcp_temp_cred.json
+    - chmod 644 .gcp_temp_cred.json 
     - ls -l .gcp_temp_cred.json
     - echo "Created credential configuration file"
     - cat .gcp_temp_cred.json
