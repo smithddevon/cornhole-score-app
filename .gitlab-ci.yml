@@ -17,12 +17,10 @@ get-crendentials:
       --service-account="${GCP_SERVICE_ACCOUNT}"
       --output-file=.gcp_temp_cred.json
       --credential-source-file=.ci_job_jwt_file
-    - chmod 644 .gcp_temp_cred.json 
-    - ls -l .gcp_temp_cred.json
     - echo "Created credential configuration file"
     - cat .gcp_temp_cred.json
     - echo "Contents of credential configuration file"
-    - gcloud auth login --cred-file=`pwd`/.gcp_temp_cred.json --verbosity=debug
+    - gcloud auth login --update-adc --cred-file=`pwd`/.gcp_temp_cred.json --verbosity=debug
     - echo "Logged into Google Cloud"
     - gcloud auth list
     - echo "Auth List:"
