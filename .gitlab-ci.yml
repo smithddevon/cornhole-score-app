@@ -33,7 +33,7 @@ get-sh:
   image: dwdraju/alpine-curl-jq
   stage: test-sh
   script:
-    - echo "GITLAB_OIDC_TOKEN: ${GITLAB_OIDC_TOKEN}"
+    - echo ${GITLAB_OIDC_TOKEN}
     - chmod +x infra/exchange_token.sh
     - ./infra/exchange_token.sh
 
