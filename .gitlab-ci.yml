@@ -2,12 +2,15 @@ stages:
   - test-auth
   - test-sh
 
-get-crendentials:
-  image: google/cloud-sdk:slim
-  stage: test-auth
+.id_tokens:
   id_tokens:
     GITLAB_OIDC_TOKEN:
       aud: https://gitlab.com
+
+get-crendentials:
+  extends: .id_tokens
+  image: google/cloud-sdk:slim
+  stage: test-auth
   script:
     - echo ${GITLAB_OIDC_TOKEN} > .ci_job_jwt_file
     - echo "Created .ci_job_jwt_file"
@@ -26,6 +29,7 @@ get-crendentials:
     - echo "Auth List:"
     
 get-sh:
+  extends: .id_tokens
   image: dwdraju/alpine-curl-jq
   stage: test-sh
   script:

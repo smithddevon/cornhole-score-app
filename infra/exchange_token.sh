@@ -1,3 +1,5 @@
+#!/bin/sh -x
+
 PAYLOAD="$(cat <<EOF
 {
   "audience": "//iam.googleapis.com/projects/${PROJECT_NUMBER}/locations/global/workloadIdentityPools/${POOL_ID}/providers/${PROVIDER_ID}",
