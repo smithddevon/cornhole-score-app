@@ -16,7 +16,7 @@ FEDERATED_TOKEN="$(curl -v -X POST "https://sts.googleapis.com/v1/token" \
   --header "Accept: application/json" \
   --header "Content-Type: application/json" \
   --data "${PAYLOAD}" \
-  | jq -r '.access_token'
+  2>&1 | jq -r '.access_token'
 )"
 
 ACCESS_TOKEN="$(curl -v -X POST "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/${SERVICE_ACCOUNT_EMAIL}:generateAccessToken" \
