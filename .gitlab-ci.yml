@@ -5,7 +5,7 @@ stages:
 .id_tokens:
   id_tokens:
     GITLAB_OIDC_TOKEN:
-      aud: https://gitlab.com
+      aud: https://iam.googleapis.com/projects/${PROJECT_NUMBER}/locations/global/workloadIdentityPools/${POOL_ID}/providers/${PROVIDER_ID}
 
 get-crendentials:
   extends: .id_tokens
