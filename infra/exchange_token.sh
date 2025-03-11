@@ -12,12 +12,15 @@ PAYLOAD="$(cat <<EOF
 EOF
 )"
 
-FEDERATED_TOKEN="$(curl -v -X POST "https://sts.googleapis.com/v1/token" \
+STS_RESPONSE=$(curl -v -X POST "https://sts.googleapis.com/v1/token" \
   --header "Accept: application/json" \
   --header "Content-Type: application/json" \
-  --data "${PAYLOAD}" \
-  | jq -r '.access_token'
-)"
+  --data "${PAYLOAD}" )
+
+echo "STS Response: ${STS_RESPONSE}"
+FEDERATED_TOKEN=$(echo "${STS_RESPONSE}" | jq -r '.access_token')
+
+
 
 ACCESS_TOKEN="$(curl -v -X POST "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/${SERVICE_ACCOUNT_EMAIL}:generateAccessToken" \
   --header "Accept: application/json" \
