@@ -33,7 +33,8 @@ get-sh:
   image: dwdraju/alpine-curl-jq
   stage: test-sh
   script:
-    - echo ${GITLAB_OIDC_TOKEN}
+    - echo "Checking if GITLAB_OIDC_TOKEN is set..."
+    - if [ -z "$GITLAB_OIDC_TOKEN" ]; then echo "GITLAB_OIDC_TOKEN is EMPTY"; exit 1; else echo "GITLAB_OIDC_TOKEN is SET (but masked)"; fi
     - chmod +x infra/exchange_token.sh
     - ./infra/exchange_token.sh
 
