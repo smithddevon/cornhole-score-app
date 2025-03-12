@@ -12,8 +12,6 @@ get-crendentials:
   image: google/cloud-sdk:slim
   stage: test-auth
   script:
-    - OIDC_TOKEN=$(gcloud auth print-identity-token)  # Fetch the OIDC token
-    - echo "OIDC Token: $OIDC_TOKEN"
     - echo ${GITLAB_OIDC_TOKEN} > .ci_job_jwt_file
     - echo "Created .ci_job_jwt_file"
     - cat .ci_job_jwt_file
