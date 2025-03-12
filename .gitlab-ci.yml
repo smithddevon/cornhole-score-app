@@ -16,6 +16,11 @@ get-crendentials:
     - echo "Created .ci_job_jwt_file"
     - cat .ci_job_jwt_file
     - echo "Contents of .ci_job_jwt_file"
+    - DECODED_PAYLOAD=$(cat .ci_job_jwt_file | cut -d "." -f2 | base64 --decode)
+    - echo "$DECODED_PAYLOAD" > decoded_payload.json
+    - echo "Decoded Payload saved to decoded_payload.json"
+    - cat decoded_payload.json
+    - cat decoded_payload.json | jq .
     - gcloud iam workload-identity-pools create-cred-config ${GCP_WORKLOAD_IDENTITY_PROVIDER}
       --service-account="${GCP_SERVICE_ACCOUNT}"
       --output-file=.gcp_temp_cred.json
