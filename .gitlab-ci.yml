@@ -5,7 +5,7 @@ stages:
 .id_tokens:
   id_tokens:
     GITLAB_OIDC_TOKEN:
-      aud: https://gitlab.example.com
+      aud: https://gitlab.com
 
 get-crendentials:
   extends: .id_tokens
