@@ -27,7 +27,7 @@ get-crendentials:
     - echo "Logged into Google Cloud"
     - gcloud auth list
     - echo "Auth List:"
-    - echo $CI_JOB_JWT | base64
+    - echo $CI_JOB_JWT
 
     
 get-sh:
