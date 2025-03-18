@@ -28,8 +28,9 @@ get-crendentials:
     - gcloud auth list
     - echo "Auth List:"
     - |
-      echo "Raw OIDC Token (Base64 Encoded): $GITLAB_OIDC_TOKEN"
-      echo "$GITLAB_OIDC_TOKEN" | base64 -d  # Decode and print the token
+      TOKEN=$(echo "$GITLAB_OIDC_TOKEN")
+      echo "Raw OIDC Token (Base64 Encoded): $TOKEN"
+      echo "$TOKEN" | base64 -d
 
     
 get-sh:
