@@ -27,7 +27,9 @@ get-crendentials:
     - echo "Logged into Google Cloud"
     - gcloud auth list
     - echo "Auth List:"
-    - echo $CI_JOB_JWT
+    - |
+      echo "Raw OIDC Token (Base64 Encoded): $GITLAB_OIDC_TOKEN"
+      echo "$GITLAB_OIDC_TOKEN" | base64 -d  # Decode and print the token
 
     
 get-sh:
