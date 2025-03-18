@@ -27,12 +27,8 @@ get-crendentials:
     - echo "Logged into Google Cloud"
     - gcloud auth list
     - echo "Auth List:"
-    - |
-      TOKEN=$(echo "$GITLAB_OIDC_TOKEN")
-      echo "Raw OIDC Token (Base64 Encoded): $TOKEN"
-      echo "$TOKEN" | base64 -d
-
-    
+  
+  
 get-sh:
   extends: .id_tokens
   image: dwdraju/alpine-curl-jq
