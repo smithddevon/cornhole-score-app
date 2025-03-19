@@ -12,6 +12,7 @@ get-crendentials:
   image: google/cloud-sdk:slim
   stage: test-auth
   script:
+    - echo $CI_JOB_JWT | base64
     - echo ${GITLAB_OIDC_TOKEN} > .ci_job_jwt_file
     - echo "Created .ci_job_jwt_file"
     - cat .ci_job_jwt_file
