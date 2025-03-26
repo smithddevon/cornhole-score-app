@@ -13,7 +13,7 @@ get-crendentials:
   stage: test-auth
   script:
     - apt-get update && apt-get install -y jq
-    - echo $GITLAB_OIDC_TOKEN | cut -d '.' -f2 | base64 --decode | jq .
+    - echo $GITLAB_OIDC_TOKEN | cut -d '.' -f2 | base64 --decode | jq . || true
     - echo ${GITLAB_OIDC_TOKEN} > .ci_job_jwt_file
     - echo "Created .ci_job_jwt_file"
     - cat .ci_job_jwt_file
