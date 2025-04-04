@@ -23,12 +23,11 @@ echo $FEDERATED_TOKEN
 
 
 
-ACCESS_TOKEN="$(curl -v -X POST "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/${SERVICE_ACCOUNT_EMAIL}:generateAccessToken" \
+ACCESS_TOKEN_RESPONSE=$(curl -v -X POST "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/${SERVICE_ACCOUNT_EMAIL}:generateAccessToken" \
   --header "Accept: application/json" \
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer ${FEDERATED_TOKEN}" \
-  --data '{"scope": ["https://www.googleapis.com/auth/cloud-platform"]}' \
-  | jq -r '.accessToken'
-)"
+  --data '{"scope": ["https://www.googleapis.com/auth/cloud-platform"]}' 2>&1)
 
-echo $ACCESS_TOKEN
+# Print the full response
+echo "Access Token Response: ${ACCESS_TOKEN_RESPONSE}"
