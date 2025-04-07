@@ -22,7 +22,7 @@ FEDERATED_TOKEN="$(curl -v -X POST "https://sts.googleapis.com/v1/token" \
 echo $FEDERATED_TOKEN
 
 
-
+# Testing Access Token 
 ACCESS_TOKEN_RESPONSE=$(curl -v -X POST "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/${SERVICE_ACCOUNT_EMAIL}:generateAccessToken" \
   --header "Accept: application/json" \
   --header "Content-Type: application/json" \
