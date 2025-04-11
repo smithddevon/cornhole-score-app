@@ -1,13 +1,14 @@
 stages:
   - test-auth
   - test-sh
+  - terraform-apply
 
 .id_tokens:
   id_tokens:
     GITLAB_OIDC_TOKEN:
       aud: https://gitlab.com
 
-get-crendentials:
+get-credentials:
   extends: .id_tokens
   image: google/cloud-sdk:slim
   stage: test-auth
@@ -42,7 +43,21 @@ get-sh:
     - ./infra/exchange_token.sh
 
 
-
+terraform_apply:
+  stage: terraform-apply
+  image: hashicorp/terraform
+  dependencies:
+    - get-credentials
+  script:
+    - echo "Installing dependencies"
+    - apk update && apk add --no-cache curl jq
+    - echo "Using GCP cred for Terraform" 
+    - export GOOGLE_APPLICATION_CREDENTIALS=".gcp_temp_cred.json"
+    - terraform init
+    - terraform plan -out=tfplan
+    - terraform apply -auto-approve tfplan
+  only:
+    - master
 
 
 

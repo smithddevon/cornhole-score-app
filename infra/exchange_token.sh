@@ -28,3 +28,5 @@ ACCESS_TOKEN="$(curl -v -X POST "https://iamcredentials.googleapis.com/v1/projec
   --data '{"scope": ["https://www.googleapis.com/auth/cloud-platform"]}' \
   | jq -r '.accessToken'
 )"
+
+echo $ACCESS_TOKEN
