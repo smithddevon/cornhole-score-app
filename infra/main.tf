@@ -8,8 +8,8 @@ terraform {
 }
 
 provider "google" {
-  project = local.tfvars.project_id
-  region  = local.tfvars.region
+  project = var.project_id
+  region  = var.region
 }
 
 # Retrieve tfvars from secret manager
