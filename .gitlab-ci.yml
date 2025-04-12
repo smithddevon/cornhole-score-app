@@ -30,6 +30,9 @@ get-credentials:
     - echo "Logged into Google Cloud"
     - gcloud auth list
     - echo "Auth List:"
+  artifacts:
+    paths:
+      - .gcp_temp_cred.json
   
   
 get-sh:
