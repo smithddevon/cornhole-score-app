@@ -33,6 +33,7 @@ get-credentials:
   artifacts:
     paths:
       - .gcp_temp_cred.json
+      - .ci_job_jwt_file
   
   
 get-sh:
