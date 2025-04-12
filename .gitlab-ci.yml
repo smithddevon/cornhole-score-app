@@ -56,7 +56,7 @@ terraform_apply:
     - echo "Installing dependencies"
     - apk update && apk add --no-cache curl jq
     - echo "Using GCP cred for Terraform" 
-    - export GOOGLE_APPLICATION_CREDENTIALS=".gcp_temp_cred.json"
+    - export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/.gcp_temp_cred.json"
     - cd infra
     - terraform init
     - terraform plan -out=tfplan
