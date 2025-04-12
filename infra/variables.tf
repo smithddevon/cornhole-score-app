@@ -13,7 +13,3 @@ variable "db_password" {
   description = "db password"
 }
 
-variable "GOOGLE_APPLICATION_CREDENTIALS" {
-  type        = string
-  description = "Path to the Google credentials JSON file"
-}
