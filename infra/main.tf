@@ -39,7 +39,7 @@ resource "google_sql_database_instance" "mysql-instance" {
     }
     ip_configuration {
       ipv4_enabled = false
-      require_ssl  = true
+  
     }
   }
 }
@@ -52,10 +52,11 @@ resource "google_sql_database" "mysql-db" {
 
 # Create Cloud SQL user
 resource "google_sql_user" "mysql-user" {
-  name     = "mysql-user"
-  instance = google_sql_database_instance.mysql-instance.name
-  host     = "%"
-  password = local.tfvars.db_password
+  name        = "mysql-user"
+  instance    = google_sql_database_instance.mysql-instance.name
+  host        = "%"
+  password    = local.tfvars.db_password
+  require_ssl = true
 }
 
 resource "google_app_engine_application" "app" {
