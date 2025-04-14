@@ -14,7 +14,8 @@ provider "google" {
 
 # Retrieve tfvars from secret manager
 data "google_secret_manager_secret_version" "tfvars" {
-  secret = "cornhole-secret-app"
+  secret  = "cornhole-app-secrets"
+  version = "latest"
 
 }
 
