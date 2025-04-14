@@ -52,12 +52,12 @@ resource "google_sql_database" "mysql-db" {
 
 # Create Cloud SQL user
 resource "google_sql_user" "mysql-user" {
-  name        = "mysql-user"
-  instance    = google_sql_database_instance.mysql-instance.name
-  host        = "%"
-  password    = local.tfvars.db_password
-  require_ssl = true
+  name     = "mysql-user"
+  instance = google_sql_database_instance.mysql-instance.name
+  host     = "%"
+  password = local.tfvars.db_password
 }
+
 
 resource "google_app_engine_application" "app" {
   project     = local.tfvars.project_id
