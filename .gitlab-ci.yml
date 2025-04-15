@@ -63,6 +63,9 @@ terraform_apply:
     - export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/.gcp_temp_cred.json"
     - cp .ci_job_jwt_file infra/
     - cd infra
+    - echo "Printing identity from credential:"
+    - echo "Checking caller identity..."
+    - ACCESS_TOKEN=$(gcloud auth print-access-token)
     - terraform init
     - terraform plan -out=tfplan
     - terraform apply -auto-approve tfplan
