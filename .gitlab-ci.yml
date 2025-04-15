@@ -61,16 +61,16 @@ terraform_apply:
     - apk update && apk add --no-cache curl jq
     - echo "Using GCP cred for Terraform" 
     - export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/.gcp_temp_cred.json"
+    - cat .gcp_temp_cred.json 
     - cp .ci_job_jwt_file infra/
-    - cd infra
-    - echo "Printing identity from credential:"
-    - echo "Checking caller identity..."
-    - ACCESS_TOKEN=$(gcloud auth print-access-token)
+    - cd infra 
     - terraform init
     - terraform plan -out=tfplan
     - terraform apply -auto-approve tfplan
   only:
-    - master
+    - master 
+
+
 
 
 
