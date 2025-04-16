@@ -39,7 +39,7 @@ resource "google_sql_database_instance" "mysql-instance" {
       start_time = "3:00"
     }
     ip_configuration {
-      ipv4_enabled = false
+      ipv4_enabled = true
   
     }
   }
@@ -59,16 +59,11 @@ resource "google_sql_user" "mysql-user" {
   password = local.tfvars.db_password
 }
 
-
-resource "google_app_engine_application" "app" {
-  project     = local.tfvars.project_id
-  location_id = local.tfvars.region
-}
-
 resource "google_app_engine_standard_app_version" "app-version" {
-  project = local.tfvars.project_id
-  runtime = "python37"
-  service = "default"
+  project    = local.tfvars.project_id
+  runtime    = "python37"
+  service    = "default"
+  version_id = "v1"
 
   deployment {
     files {
