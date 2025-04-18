@@ -67,7 +67,7 @@ resource "google_app_engine_standard_app_version" "app-version" {
 
   deployment {
     files {
-      source_url = "app.yaml"
+      source_url = "https://storage.googleapis.com/cornhole-app-yaml/app.yaml"
       name       = "app.yaml"
     }
   }
