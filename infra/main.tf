@@ -61,7 +61,7 @@ resource "google_sql_user" "mysql-user" {
 
 resource "google_app_engine_standard_app_version" "app-version" {
   project    = local.tfvars.project_id
-  runtime    = "python311"
+  runtime    = "python311" 
   service    = "default"
   version_id = "v1"
 
@@ -120,7 +120,7 @@ resource "google_project_iam_member" "app_engine_developer" {
 }
 
 
-# Gitlab Service Account
+## Gitlab Service Account
 resource "google_service_account" "gitlab_ci_cd" {
   account_id = "gitlab-ci-cd"
 
