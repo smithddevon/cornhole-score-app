@@ -120,7 +120,7 @@ resource "google_project_iam_member" "app_engine_developer" {
 }
 
 
-## Gitlab Service Account
+# Gitlab Service Account
 resource "google_service_account" "gitlab_ci_cd" {
   account_id = "gitlab-ci-cd"
 
