@@ -61,7 +61,7 @@ resource "google_sql_user" "mysql-user" {
 
 resource "google_app_engine_standard_app_version" "app-version" {
   project    = local.tfvars.project_id
-  runtime    = "python37"
+  runtime    = "python311"
   service    = "default"
   version_id = "v1"
 
