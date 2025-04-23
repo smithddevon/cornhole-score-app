@@ -28,7 +28,7 @@ locals {
 # Create Cloud SQL instance 
 resource "google_sql_database_instance" "mysql-instance" {
   name                = "mysql-instance"
-  region              = local.tfvars.region
+  region              = var.region
   database_version    = "MYSQL_8_0"
   deletion_protection = true
 
@@ -60,7 +60,7 @@ resource "google_sql_user" "mysql-user" {
 }
 
 resource "google_app_engine_standard_app_version" "app-version" {
-  project    = local.tfvars.project_id
+  project    = var.project_id
   runtime    = "python311" 
   service    = "default"
   version_id = "v1"
@@ -90,13 +90,13 @@ resource "google_service_account" "cloud_sql_sa" {
 
 # Assign IAM roles to Cloud SQL SA
 resource "google_project_iam_member" "cloud_sql_sa_role" {
-  project = local.tfvars.project_id
+  project = var.project_id
   role    = "roles/cloudsql.client"
   member  = "serviceAccount:${google_service_account.cloud_sql_sa.email}"
 }
 
 resource "google_project_iam_member" "cloud_sql_admin" {
-  project = local.tfvars.project_id
+  project = var.project_id
   role    = "roles/cloudsql.admin"
   member  = "serviceAccount:${google_service_account.cloud_sql_sa.email}"
 }
