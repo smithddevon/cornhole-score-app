@@ -83,7 +83,7 @@ resource "google_app_engine_standard_app_version" "app-version" {
 }
 
 
-# #Create Service Account for Cloud SQL
+# Create Service Account for Cloud SQL
 resource "google_service_account" "cloud_sql_sa" {
   account_id = "cloud-sql-sa"
 }
