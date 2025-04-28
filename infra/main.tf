@@ -72,10 +72,6 @@ resource "google_app_engine_standard_app_version" "app-version" {
     }
   }
 
-  entrypoint {
-    shell = "python3 app.py"
-  }
-
   automatic_scaling {
     min_idle_instances = 1
     max_idle_instances = 2
