@@ -57,7 +57,7 @@ zip-source-code:
     - export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/.gcp_temp_cred.json"
     - gcloud auth login --cred-file=$GOOGLE_APPLICATION_CREDENTIALS
     - echo "Creating zip file"
-    - ZIP_FILE_NAME="source_code_.zip"
+    - ZIP_FILE_NAME="source_code.zip"
     - zip -r $ZIP_FILE_NAME . -x "*.git*" "*.DS_Store" "__pycache__/*"
     - gsutil cp $ZIP_FILE_NAME gs://cornhole-app-yaml/
 
