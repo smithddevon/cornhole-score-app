@@ -53,6 +53,7 @@ zip-source-code:
   dependencies:
     - get-credentials
   script:
+    - app-get update && apt-get install -y zip
     - export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/.gcp_temp_cred.json"
     - gcloud auth login --cred-file=$GOOGLE_APPLICATION_CREDENTIALS
     - echo "Creating zip file"
