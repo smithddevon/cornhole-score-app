@@ -54,7 +54,7 @@ zip-source-code:
     - get-credentials
   script:
     - export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/.gcp_temp_cred.json"
-    - gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
+    - gcloud auth login --cred-file=$GOOGLE_APPLICATION_CREDENTIALS
     - echo "Creating zip file"
     - ZIP_FILE_NAME="source_code_.zip"
     - zip -r $ZIP_FILE_NAME . -x "*.git*" "*.DS_Store" "__pycache__/*"
