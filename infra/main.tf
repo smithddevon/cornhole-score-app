@@ -66,8 +66,9 @@ resource "google_app_engine_standard_app_version" "app-version" {
   version_id = "v1"
 
   deployment {
-    files {
-      source_url = "https://storage.googleapis.com/cornhole-app-yaml/source_code.zip"
+    zip {
+      source_url  = "https://storage.googleapis.com/cornhole-app-yaml/source_code.zip"
+      files_count = 1
     }
   }
 
