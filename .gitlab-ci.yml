@@ -56,6 +56,12 @@ zip-source-code:
     - apt-get update && apt-get install -y zip
     - export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/.gcp_temp_cred.json"
     - gcloud auth login --cred-file=$GOOGLE_APPLICATION_CREDENTIALS
+    - echo "DB_USER=$DB_USER" >> .env
+    - echo "DB_PASSWORD=$DB_PASSWORD" >> .env
+    - echo "DB_NAME=$DB_NAME" >> .env
+    - echo "DB_HOST=$DB_HOST" >> .env
+    - echo "SECRET_KEY=$SECRET_KEY" >> .env
+    - cat .env
     - echo "Creating zip file"
     - ZIP_FILE_NAME="source_code.zip"
     - zip -r $ZIP_FILE_NAME . -x "*.git*" "*.DS_Store" "__pycache__/*"
