@@ -104,6 +104,18 @@ app-engine-deploy:
     - export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/.gcp_temp_cred.json"
     - gcloud auth login --cred-file=$GOOGLE_APPLICATION_CREDENTIALS
     - gcloud config set project $GOOGLE_PROJECT_ID
+    deploy-app-engine:
+  stage: deploy
+  image: google/cloud-sdk:slim
+  dependencies:
+    - zip-source-code
+  script:
+    - echo "Using GCP credentials"
+    - export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/.gcp_temp_cred.json"
+    - gcloud auth login --cred-file=$GOOGLE_APPLICATION_CREDENTIALS
+    - gcloud config set project $GOOGLE_PROJECT_ID
+    - echo "Installing unzip..."
+    - apt-get update && apt-get install -y unzip
     - echo "Downloading zipped source code"
     - gsutil cp gs://cornhole-app-yaml/source_code.zip .
     - unzip -l source_code.zip
