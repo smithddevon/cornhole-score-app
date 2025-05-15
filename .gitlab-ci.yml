@@ -98,7 +98,7 @@ app-engine-deploy:
   image: google/cloud-sdk:slim 
   dependencies:
     - get-credentials
-    - zip-source_code
+    - zip-source-code
   script:
     - echo "Using GCP credentials"
     - export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/.gcp_temp_cred.json"
