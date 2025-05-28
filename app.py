@@ -10,9 +10,6 @@ load_dotenv()
 # Configure application
 app = Flask(__name__)
 
-app.config["SESSION_TYPE"] = "filesystem"
-Session(app)
-
 # Set secret key for session
 app.secret_key = os.getenv("SECRET_KEY")
 
