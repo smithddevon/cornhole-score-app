@@ -66,7 +66,7 @@ zip-source-code:
     - echo "Creating zip file"
     - ZIP_FILE_NAME="source_code.zip"
     - zip -r $ZIP_FILE_NAME . -x "*.git*" "*.DS_Store" "__pycache__/*"
-    - gsutil cp $ZIP_FILE_NAME gs://cornhole-app-yaml/
+    - gcloud storage cp $ZIP_FILE_NAME gs://cornhole-app-yaml/
 
 
 terraform_apply:
