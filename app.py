@@ -1,7 +1,6 @@
 import mysql.connector
 import os
 from flask import Flask, flash, render_template, request, jsonify, session, redirect
-from flask_session import Session
 from dotenv import load_dotenv
 
 # Load environment variables

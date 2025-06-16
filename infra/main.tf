@@ -101,4 +101,3 @@ resource "google_project_iam_member" "cloud_sql_admin" {
   member  = "serviceAccount:${google_service_account.cloud_sql_sa.email}"
 }
 
-#test
