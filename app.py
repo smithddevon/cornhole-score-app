@@ -153,7 +153,14 @@ def update_score():
             db, cursor = get_db_cursor()
             insert_game_data(session["team1_name"], session["team1_score"], session["team2_name"], session["team2_score"], winner)
             db.commit()
-            return jsonify({"winner": winner})
+            # return jsonify({"winner": winner})
+        
+        # Always return something, even if there's no winner
+        return jsonify({
+            "team1_score": session["team1_score"],
+            "team2_score": session["team2_score"],
+            "winner": winner  # will be None if no one has won
+        })
 
 
     except mysql.connector.Error as err:
