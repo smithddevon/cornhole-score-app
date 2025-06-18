@@ -12,21 +12,28 @@ app = Flask(__name__)
 # Set secret key for session
 app.secret_key = os.getenv("SECRET_KEY")
 
-# Function to get a new database connection and cursor
 def get_db_cursor():
     try:
-        # Create a new database connection
-        db = mysql.connector.connect(
-            host=os.getenv("DB_HOST"),  # e.g., "localhost"
-            user=os.getenv("DB_USER"),  # e.g., "root"
-            password=os.getenv("DB_PASSWORD"),  # Your MySQL password
-            database=os.getenv("DB_NAME")  # e.g., "cornhole_score"
-        )
-        # Return a cursor with dictionary support
+        if os.getenv("INSTANCE_CONNECTION_NAME"):
+            db = mysql.connector.connect(
+                user=os.getenv("DB_USER"),
+                password=os.getenv("DB_PASSWORD"),
+                database=os.getenv("DB_NAME"),
+                unix_socket=f"/cloudsql/{os.getenv('INSTANCE_CONNECTION_NAME')}"
+            )
+        else:
+            db = mysql.connector.connect(
+                host=os.getenv("DB_HOST", "localhost"),
+                user=os.getenv("DB_USER"),
+                password=os.getenv("DB_PASSWORD"),
+                database=os.getenv("DB_NAME")
+            )
         return db, db.cursor(dictionary=True)
+
     except mysql.connector.Error as err:
         print(f"Database connection error: {err}")
         return None, None
+
 
 def insert_game_data(team1_name, team1_score, team2_name, team2_score, winner):
     """Insert game data into the database"""
